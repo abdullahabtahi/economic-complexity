@@ -167,28 +167,22 @@ data_manager["kpi_div"] = pd.DataFrame([{"Value": max(diversification)}])
 @capture("graph")
 def custom_scatter_eci(data_frame, x, y, **kwargs):
     import plotly.express as px_standard
-    fig = px_standard.scatter(data_frame, x=x, y=y, text='Kingdom', log_y=True, template='plotly_white', **kwargs)
-    fig.update_traces(
-        textposition='middle right',
-        marker=dict(size=15, color='#2c3e50', line=dict(width=1, color='black'))
-    )
+    fig = px_standard.scatter(data_frame, x=x, y=y, text='Kingdom', size_max=15, log_y=True, **kwargs)
+    fig.update_traces(textposition='middle right')
     return fig
 
 @capture("graph")
 def custom_scatter_pci(data_frame, x, y, **kwargs):
     import plotly.express as px_standard
-    fig = px_standard.scatter(data_frame, x=x, y=y, text='Product', log_y=True, template='plotly_white', **kwargs)
-    fig.update_traces(
-        textposition='middle right',
-        marker=dict(size=15, color='#c0392b', line=dict(width=1, color='black'))
-    )
+    fig = px_standard.scatter(data_frame, x=x, y=y, text='Product', size_max=15, log_y=True, **kwargs)
+    fig.update_traces(textposition='middle right')
     return fig
 
 @capture("graph")
 def custom_heatmap(data_frame, x, y, color, **kwargs):
     import plotly.express as px_standard
     df_pivot = data_frame.pivot(index=y, columns=x, values=color)
-    fig = px_standard.imshow(df_pivot, aspect="auto", template='plotly_white', **kwargs)
+    fig = px_standard.imshow(df_pivot, aspect="auto", **kwargs)
     return fig
 
 @capture("graph")
@@ -212,7 +206,7 @@ def custom_network_graph(data_frame, **kwargs):
         textfont=dict(color="black", size=10, family="Arial Black"),
         marker=dict(
             showscale=True,
-            colorscale='RdYlBu_r',
+            colorscale='Blues',
             color=data_frame['PCI'],
             size=40,
             colorbar=dict(
@@ -250,10 +244,10 @@ page_overview = vm.Page(
         vm.AgGrid(title="Raw Matrix (Mcp)", figure=dash_ag_grid(data_frame="raw_matrix")),
         vm.Graph(
             header="Click a kingdom to filter the dashboard",
-            figure=px.bar("countries", x="Diversification", y="Kingdom", orientation='h', template='plotly_white', color_discrete_sequence=['#2c3e50']),
+            figure=px.bar("countries", x="Diversification", y="Kingdom", orientation='h'),
             actions=va.set_control(control="kingdom_filter", value="y")
         ),
-        vm.Graph(figure=px.bar("products", x="Product", y="Ubiquity", template='plotly_white', color_discrete_sequence=['#c0392b'])),
+        vm.Graph(figure=px.bar("products", x="Product", y="Ubiquity")),
     ],
     controls=[
         vm.Filter(id="kingdom_filter", column="Kingdom", selector=vm.Dropdown(multi=True))
