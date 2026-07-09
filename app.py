@@ -206,7 +206,7 @@ def custom_network_graph(data_frame, **kwargs):
         textfont=dict(color="black", size=10, family="Arial Black"),
         marker=dict(
             showscale=True,
-            colorscale='Blues',
+            colorscale='RdYlBu_r',
             color=data_frame['PCI'],
             size=40,
             colorbar=dict(
