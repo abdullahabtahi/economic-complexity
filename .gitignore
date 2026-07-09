@@ -1,0 +1,21 @@
+# Environments
+venv/
+env/
+.env
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Temporary or experimental files
+test_dashboard.py
+vizro_demo.py
+deploy.py
+notebook_code.py
+
+# OS generated files
+.DS_Store
+
+# Ignore the Jupyter Notebook and Assignment instructions if you don't want them public
+# final-assignment.ipynb
+# Final Assignment Economic Complexity Report (1).md

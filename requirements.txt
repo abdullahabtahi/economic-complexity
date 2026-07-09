@@ -1,0 +1,9 @@
+networkx==3.6.1
+numpy==2.5.1
+pandas==3.0.3
+plotly==6.8.0
+scipy==1.18.0
+vizro==0.1.59
+vizro-dash-components==0.1.1
+vizro_ai==0.4.1
+gunicorn==21.2.0
